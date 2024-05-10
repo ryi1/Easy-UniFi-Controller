@@ -1,0 +1,27 @@
+name: Testing Deploy Script
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Find and execute script
+      run: |
+        # Encuentra el archivo .sh y ejecútalo
+        SCRIPT=$(find . -type f -name "*.sh" | head -n 1)
+        if [ -f "$SCRIPT" ]; then
+          chmod +x "$SCRIPT"
+          ./"$SCRIPT"
+        else
+          echo "No se encontró ningún script bash en el repositorio."
+          exit 1
+        fi
+
