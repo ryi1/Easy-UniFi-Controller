@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     
     steps:
     - name: Checkout code
@@ -15,13 +15,14 @@ jobs:
 
     - name: Find and execute script
       run: |
-        # Encuentra el archivo .sh y ejecútalo
+        # Find the .sh file and run it
         SCRIPT=$(find . -type f -name "*.sh" | head -n 1)
         if [ -f "$SCRIPT" ]; then
           chmod +x "$SCRIPT"
           ./"$SCRIPT"
+          echo "correct deployment UniFi Controller is up ✅"
         else
-          echo "No se encontró ningún script bash en el repositorio."
+          echo "No bash script found in the repository."
           exit 1
         fi
 
