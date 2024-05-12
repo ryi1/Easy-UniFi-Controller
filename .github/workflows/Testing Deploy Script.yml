@@ -26,19 +26,23 @@ jobs:
           exit 1
         fi
 
-    - name: Download snap binary
-      run: |
-        sudo apt install snapd
+    #- name: Download snap binary
+    # run: |
+    #  sudo apt install snapd
 
     - name: Download ngrok binary
       run: |
-        sudo snap install ngrok
+        curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc \
+	       | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null \
+	       && echo "deb https://ngrok-agent.s3.amazonaws.com buster main" \
+	       | sudo tee /etc/apt/sources.list.d/ngrok.list \
+	       && sudo apt update \
+	       && sudo apt install ngrok
 
     - name: Set ngrok authtoken
       run: |
-        ngrok service start
-        sudo ngrok config add-authtoken 1umZbVZPbfktLlkzuAMcIqofqfX_6kN2bJdpVHMNb26HSHTQ
-
+        ngrok config add-authtoken 1umZbVZPbfktLlkzuAMcIqofqfX_6kN2bJdpVHMNb26HSHTQ
+      
     - name: Start ngrok tunnel
       run: |
         ngrok http 8443 &
