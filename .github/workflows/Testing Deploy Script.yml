@@ -42,7 +42,8 @@ jobs:
         /usr/local/bin/ngrok http 8443 &>/dev/null &
         sleep 3 # Esperar a que ngrok se inicialice
         echo "El túnel ngrok está ahora activo"
-        echo /dev/null
+        cat /dev/null
+        
     - name: Keep workflow running for 5 minutes
       run: sleep 300 # 300 segundos = 5 minutos
 
