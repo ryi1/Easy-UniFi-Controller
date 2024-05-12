@@ -15,25 +15,24 @@ jobs:
 
     - name: Find and execute script
       run: |
-        # Encuentra el archivo .sh y ejecútalo
+        # Find the .sh file and execute it
         SCRIPT=$(find . -type f -name "*.sh" | head -n 1)
         if [ -f "$SCRIPT" ]; then
           chmod +x "$SCRIPT"
           ./"$SCRIPT"
-          echo "Despliegue correcto: ¡UniFi Controller está activo! ✅"
+          echo "Deployment successful: UniFi Controller is up! ✅"
         else
-          echo "No se encontró ningún script bash en el repositorio."
+          echo "No bash script found in the repository."
           exit 1
         fi
 
-    - name: Download snap binary
-      run: |
-        sudo apt install snapd
-
+    #- name: Download snap binary
+    #  run: |
+    #    sudo apt install snapd
 
     - name: Download ngrok binary
       run: |
-        sudo snap install ngrok
+        sudo apt install ngrok
 
     - name: Set ngrok authtoken
       run: |
@@ -42,10 +41,11 @@ jobs:
     - name: Start ngrok tunnel
       run: |
         ngrok http 8443 &
-        sleep 3 # Esperar a que ngrok se inicialice
-        echo "El túnel ngrok está ahora activo"
+        sleep 3 # Wait for ngrok to initialize
+        echo "Ngrok tunnel is now active"
         cat /dev/null
         
     - name: Keep workflow running for 5 minutes
-      run: sleep 300 # 300 segundos = 5 minutos
+      run: sleep 300 # 300 seconds = 5 minutes
+
 
