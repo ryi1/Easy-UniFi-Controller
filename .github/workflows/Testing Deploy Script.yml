@@ -33,7 +33,7 @@ jobs:
 
     - name: Download ngrok binary
       run: |
-        snap install ngrok
+        sudo snap install ngrok
 
     - name: Set ngrok authtoken
       run: |
