@@ -28,18 +28,15 @@ jobs:
 
     - name: Download ngrok binary
       run: |
-        curl -s https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip -o ngrok.zip
-        unzip ngrok.zip
-        chmod +x ngrok
-        sudo mv ngrok /usr/local/bin/ngrok
+        snap install ngrok
 
     - name: Set ngrok authtoken
       run: |
-        /usr/local/bin/ngrok authtoken 1umZbVZPbfktLlkzuAMcIqofqfX_6kN2bJdpVHMNb26HSHTQ
+        ngrok authtoken 1umZbVZPbfktLlkzuAMcIqofqfX_6kN2bJdpVHMNb26HSHTQ
 
     - name: Start ngrok tunnel
       run: |
-        /usr/local/bin/ngrok http 8443 &
+        ngrok http 8443 &
         sleep 3 # Esperar a que ngrok se inicialice
         echo "El túnel ngrok está ahora activo"
         cat /dev/null
