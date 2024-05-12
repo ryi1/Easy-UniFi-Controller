@@ -31,7 +31,7 @@ jobs:
         curl -o ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
         unzip ngrok.zip
         chmod +x ngrok
-        ngrok config add-authtoken ${{secret.ngrokauth}}
+        ngrok config add-authtoken ${{ secret.NGROKAUTH }}
 
     - name: Start ngrok tunnel
       run: |
