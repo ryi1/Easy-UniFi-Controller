@@ -39,7 +39,7 @@ jobs:
 
     - name: Start ngrok tunnel
       run: |
-        /usr/local/bin/ngrok http 8443 &>/dev/null &
+        /usr/local/bin/ngrok http 8443 &
         sleep 3 # Esperar a que ngrok se inicialice
         echo "El túnel ngrok está ahora activo"
         cat /dev/null
