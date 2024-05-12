@@ -35,9 +35,9 @@ jobs:
       run: |
         sudo snap install ngrok
 
-  #  - name: Set ngrok authtoken
-  #    run: |
-  #      ngrok config add-authtoken 1umZbVZPbfktLlkzuAMcIqofqfX_6kN2bJdpVHMNb26HSHTQ
+    - name: Set ngrok authtoken
+      run: |
+        sudo ngrok config add-authtoken 1umZbVZPbfktLlkzuAMcIqofqfX_6kN2bJdpVHMNb26HSHTQ
 
     - name: Start ngrok tunnel
       run: |
