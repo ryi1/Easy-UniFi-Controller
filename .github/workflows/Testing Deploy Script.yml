@@ -26,6 +26,11 @@ jobs:
           exit 1
         fi
 
+    - name: Download snap binary
+      run: |
+        apt install snapd
+
+
     - name: Download ngrok binary
       run: |
         snap install ngrok
