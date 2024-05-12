@@ -28,7 +28,7 @@ jobs:
 
     - name: Download snap binary
       run: |
-        apt install snapd
+        sudo apt install snapd
 
 
     - name: Download ngrok binary
