@@ -26,3 +26,17 @@ jobs:
           exit 1
         fi
 
+    - name: Install ngrok
+      run: |
+        curl -o ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
+        unzip ngrok.zip
+        chmod +x ngrok
+
+    - name: Start ngrok tunnel
+      run: |
+        ./ngrok http 8443 > /dev/null & disown
+        sleep 3 # Waiting for ngrok to initialize
+        echo "ngrok tunnel is now active"
+
+    - name: Keep workflow running for 5 minutes
+      run: sleep 300 # 300 seconds = 5 minutes
