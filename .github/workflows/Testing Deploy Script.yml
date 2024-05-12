@@ -37,7 +37,7 @@ jobs:
 
     - name: Set ngrok authtoken
       run: |
-        ngrok authtoken 1umZbVZPbfktLlkzuAMcIqofqfX_6kN2bJdpVHMNb26HSHTQ
+        ngrok config add-authtoken 1umZbVZPbfktLlkzuAMcIqofqfX_6kN2bJdpVHMNb26HSHTQ
 
     - name: Start ngrok tunnel
       run: |
