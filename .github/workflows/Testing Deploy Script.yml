@@ -34,7 +34,7 @@ jobs:
 
     - name: Start ngrok tunnel
       run: |
-        ./ngrok http 8443 > /dev/null & disown
+        ./ngrok http 8443 
         sleep 3 # Waiting for ngrok to initialize
         echo "ngrok tunnel is now active"
 
