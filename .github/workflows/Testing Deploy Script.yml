@@ -15,32 +15,28 @@ jobs:
 
     - name: Find and execute script
       run: |
-        # Find the .sh file and run it
+        # Encuentra el archivo .sh y ejecútalo
         SCRIPT=$(find . -type f -name "*.sh" | head -n 1)
         if [ -f "$SCRIPT" ]; then
           chmod +x "$SCRIPT"
           ./"$SCRIPT"
-          echo "correct deployment UniFi Controller is up ✅"
+          echo "Despliegue correcto: ¡UniFi Controller está activo! ✅"
         else
-          echo "No bash script found in the repository."
+          echo "No se encontró ningún script bash en el repositorio."
           exit 1
         fi
 
     - name: Install ngrok
       run: |
-        curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc \
-	      | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null \
-	      && echo "deb https://ngrok-agent.s3.amazonaws.com buster main" \
-	      | sudo tee /etc/apt/sources.list.d/ngrok.list \
-	      && sudo apt update \
-	      && sudo apt install ngrok
-        ngrok config add-authtoken 1umZbVZPbfktLlkzuAMcIqofqfX_6kN2bJdpVHMNb26HSHTQ
+        curl -s https://ngrok.com/download | sudo tar -xz -C /usr/local/bin
+        ngrok authtoken 1umZbVZPbfktLlkzuAMcIqofqfX_6kN2bJdpVHMNb26HSHTQ
 
     - name: Start ngrok tunnel
       run: |
-        ./ngrok http 8443 
-        sleep 3 # Waiting for ngrok to initialize
-        echo "ngrok tunnel is now active"
+        ngrok http 8443 &>/dev/null &
+        sleep 3 # Esperar a que ngrok se inicialice
+        echo "El túnel ngrok está ahora activo"
 
     - name: Keep workflow running for 5 minutes
-      run: sleep 300 # 300 seconds = 5 minutes
+      run: sleep 300 # 300 segundos = 5 minutos
+
