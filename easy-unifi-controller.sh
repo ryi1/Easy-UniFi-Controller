@@ -24,7 +24,7 @@ fi
 # Create docker-compose.yml file
 cat <<EOT >> docker-compose.yml
 ---
-version: "2.1"
+version: "3"
 services:
   unifi-controller:
     image: lscr.io/linuxserver/unifi-controller:latest
@@ -32,7 +32,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Etc/UTC
+      - TZ=America/Santo_Domingo
       - MEM_LIMIT=1024 #optional
       - MEM_STARTUP=1024 #optional
     volumes:
